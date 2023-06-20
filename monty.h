@@ -47,4 +47,9 @@ void freelist(stack_t **h);
 void _pop(stack_t **h, int n);
 void _swap(stack_t **h, int n);
 void _pint(stack_t **h, int data);
+void _add(stack_t **h, int data);
+void _sub(stack_t **h, int data);
+void _div(stack_t **h, int data);
+void _mul(stack_t **h, int data);
+void _mod(stack_t **h, int data);
 #endif

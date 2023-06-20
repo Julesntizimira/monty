@@ -62,11 +62,20 @@ void execute(char **new, char *cmd, int line_number)
 		{"pint", _pint},
 		{"pop", _pop},
 		{"swap", _swap},
+		{"add", _add},
+		{"sub", _sub},
+		{"div", _div},
+		{"mod", _mod},
+		{"mul", _mul},
 		{ NULL, NULL}
 	};
 	cmds = parse(cmd);	
 	if (cmds[1])
 		data = atoi(cmds[1]);
+	if (strcmp(cmds[0], "nop") == 0)
+		return;
+	if (cmds[0][0] == '#')
+		return;
 	if (strcmp(cmds[0], "push") == 0)
 	{
 		if (cmds[1][0] != '0' && data == 0)
@@ -95,6 +104,34 @@ void execute(char **new, char *cmd, int line_number)
 	else if (strcmp(cmds[0], "swap") == 0 && (head == NULL || head->next == NULL))
         {
                 printf("L%d: can't swap, stack too short\n", line_number);
+                _free(new);
+                _free(cmds);
+                exit(EXIT_FAILURE);
+        }
+	else if (strcmp(cmds[0], "add") == 0 && (head == NULL || head->next == NULL))
+        {
+                printf("L%d: can't add, stack too short\n", line_number);
+                _free(new);
+                _free(cmds);
+                exit(EXIT_FAILURE);
+        }
+	else if (strcmp(cmds[0], "sub") == 0 && (head == NULL || head->next == NULL))
+        {
+                printf("L%d: can't sub, stack too short\n", line_number);
+                _free(new);
+                _free(cmds);
+                exit(EXIT_FAILURE);
+        }
+	else if (strcmp(cmds[0], "div") == 0 && (head == NULL || head->next == NULL))
+        {
+                printf("L%d: can't div, stack too short\n", line_number);
+                _free(new);
+                _free(cmds);
+                exit(EXIT_FAILURE);
+        }
+	else if (head->n == 0)
+        {
+                printf("L%d: division by zero\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
