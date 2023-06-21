@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
 	int line_number = 1, i = 0;
 	head = NULL;
 
-	if (argc != 2)
+	if (argc != 2 || access(path, F_OK) != 0)
 	{
 		fprintf(stderr,"USAGE: monty file\n");
 		exit(EXIT_FAILURE);
