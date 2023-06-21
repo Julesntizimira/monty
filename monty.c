@@ -90,7 +90,7 @@ void execute(char **new, char *cmd, int line_number)
 		data = atoi(cmds[1]);
 	}
 
-	if (strcmp(cmds[0], "nop") == 0)
+	if (_strcmp(cmds[0], "nop") == 0)
 	{
 		_free(cmds);
 		return;
@@ -101,7 +101,7 @@ void execute(char **new, char *cmd, int line_number)
 		_free(cmds);
 		return;
 	}
-	if (strcmp(cmds[0], "push") == 0)
+	if (_strcmp(cmds[0], "push") == 0)
 	{
 		if ((!cmds[1]) || (cmds[1][0] != '0' && data == 0))
 		{
@@ -112,49 +112,49 @@ void execute(char **new, char *cmd, int line_number)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else if (strcmp(cmds[0], "pint") == 0 && head == NULL)
+	else if (_strcmp(cmds[0], "pint") == 0 && head == NULL)
 	{
 		fprintf(stderr,"L%d: can't pint, stack empty\n", line_number);
 		_free(new);
 		_free(cmds);
 		exit(EXIT_FAILURE);
 	}
-	else if (strcmp(cmds[0], "pop") == 0 && head == NULL)
+	else if (_strcmp(cmds[0], "pop") == 0 && head == NULL)
         {
                 fprintf(stderr,"L%d: can't pop, stack empty\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
-	else if (strcmp(cmds[0], "swap") == 0 && (head == NULL || head->next == NULL))
+	else if (_strcmp(cmds[0], "swap") == 0 && (head == NULL || head->next == NULL))
         {
                 fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
-	else if (strcmp(cmds[0], "add") == 0 && (head == NULL || head->next == NULL))
+	else if (_strcmp(cmds[0], "add") == 0 && (head == NULL || head->next == NULL))
         {
                 fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
-	else if (strcmp(cmds[0], "sub") == 0 && (head == NULL || head->next == NULL))
+	else if (_strcmp(cmds[0], "sub") == 0 && (head == NULL || head->next == NULL))
         {
                 fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
-	else if (strcmp(cmds[0], "div") == 0 && (head == NULL || head->next == NULL))
+	else if (_strcmp(cmds[0], "div") == 0 && (head == NULL || head->next == NULL))
         {
                 fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
-	else if (strcmp(cmds[0], "div") == 0 && head->n == 0)
+	else if (_strcmp(cmds[0], "div") == 0 && head->n == 0)
         {
 		fprintf(stderr, "L%d: division by zero\n", line_number);
                 _free(new);
@@ -163,7 +163,7 @@ void execute(char **new, char *cmd, int line_number)
         }
 	while (instr[i].opcode != NULL)
 	{
-		if (strcmp(instr[i].opcode, cmds[0]) == 0)
+		if (_strcmp(instr[i].opcode, cmds[0]) == 0)
 		{
 			instr[i].f(&head, data);
 		}

@@ -6,7 +6,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-# include <string.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -43,6 +42,7 @@ char **getinput(char *str);
 char **tokenise(char *buff, char delim);
 char *_strdup(char *str);
 int _strlen(char *s);
+int _strcmp(char *str1, char *str2);
 void freelist(stack_t **h);
 void _pop(stack_t **h, int n);
 void _swap(stack_t **h, int n);
