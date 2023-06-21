@@ -81,13 +81,13 @@ char **getinput(char *str)
 	int fp, i;
 	
 	fp = open(str, O_RDONLY);
-	buff = malloc(1025 * sizeof(char));
+	buff = malloc(10001 * sizeof(char));
 	if (buff == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	i = read(fp, buff, 1024);
+	i = read(fp, buff, 10000);
 	buff[i] = '\0';
 	cmds = tokenise(buff, '\n');
 	return (cmds);
