@@ -6,16 +6,17 @@
  */
 void _pall(stack_t **h, int data)
 {
+
 	stack_t *tmp = *h;
 
-        (void)data;
+	(void)data;
 
-        if (head != NULL)
+	if (head != NULL)
 	{
 		while (tmp != NULL)
 		{
 			printf("%d\n", tmp->n);
 			tmp = tmp->next;
 		}
-        }
+	}
 }
