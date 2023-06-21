@@ -20,7 +20,7 @@ char *_strdup(char *str)
 	buff = malloc((len + 1) * sizeof(char));
         if (buff == NULL)
         {
-                printf("Error: malloc failed\n");
+                fprintf(stderr, "Error: malloc failed\n");
                 exit(EXIT_FAILURE);
         }
 	while (i < len)
@@ -28,12 +28,13 @@ char *_strdup(char *str)
 		buff[i] = str[i];
 		i++;
 	}
+	buff[i] = '\0';
 	return (buff);
 }
 char **tokenise(char *buff, char delim)
 {
 
-        char **cmds = NULL, token[1024];
+        char **cmds = NULL, token[1024] = {'\0'};
         int i = 0, j = 0, z = 0, count = 0;
 
 	while (buff[i] != '\0')
@@ -47,7 +48,7 @@ char **tokenise(char *buff, char delim)
         if (cmds == NULL)
         {
                 free(buff);
-                printf("Error: malloc failed\n");
+                fprintf(stderr, "Error: malloc failed\n");
                 exit(EXIT_FAILURE);
         }
 	i = 0;
@@ -66,8 +67,7 @@ char **tokenise(char *buff, char delim)
                 }
                 token[j] = '\0';
 		cmds[z] = _strdup(token);
-		z++;
-		
+		z++;	
                 i++;
                 j = 0;
         }
@@ -78,16 +78,17 @@ char **tokenise(char *buff, char delim)
 char **getinput(char *str)
 {
 	char *buff = NULL, **cmds = NULL;
-	int fp;
+	int fp, i;
 	
 	fp = open(str, O_RDONLY);
-	buff = malloc(1024 * sizeof(char));
+	buff = malloc(1025 * sizeof(char));
 	if (buff == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	read(fp, buff, 1024);
+	i = read(fp, buff, 1024);
+	buff[i] = '\0';
 	cmds = tokenise(buff, '\n');
 	return (cmds);
 }

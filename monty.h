@@ -38,7 +38,7 @@ typedef struct instruction_s
 } instruction_t;
 extern stack_t *head;
 void _push(stack_t **head, int data);
-void _pall(stack_t **head, int n);
+void _pall(stack_t **h, int data);
 char **getinput(char *str);
 char **tokenise(char *buff, char delim);
 char *_strdup(char *str);

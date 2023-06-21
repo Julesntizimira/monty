@@ -1,20 +1,21 @@
 # include "monty.h"
 /**
  * _pall - function that prints all the elements of a stack_t list.
- * @head: input node
- * @n: data;
+ * @h: input node
+ * @data: data;
  */
-void _pall(stack_t **head, int n)
+void _pall(stack_t **h, int data)
 {
-	stack_t *tmp = NULL;
-	
-	(void)n;
-	if (*head == NULL || head == NULL)
-		return;
-        tmp = *head;
-	while (tmp != NULL)
-	{
-		printf("%d\n", tmp->n);
-		tmp = tmp->next;
-	}
+	stack_t *tmp = *h;
+
+        (void)data;
+
+        if (h == NULL || *h == NULL)
+                return;
+
+        while (tmp != NULL)
+        {
+                printf("%d\n", tmp->n);
+                tmp = tmp->next;
+        }
 }

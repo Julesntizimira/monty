@@ -18,21 +18,35 @@ void _free(char **cmds)
 char **parse(char *buff)
 {
 
-        char **cmds = NULL, token[1024];
-        int i = 0, j = 0, z = 0;
+        char **cmds = NULL, token[1024] = {'\0'};
+        int i = 0, j = 0, z = 0, count = 0;
 
-        cmds = malloc(3 * sizeof(char *));
+        while (buff[i] != '\0')
+        {
+		  if (buff[i] != ' ' && buff[i] != '\t')
+		  {
+			  count++;
+			  while (buff[i] != ' ' && buff[i] != '\t' && buff[i] != '\0')
+			  {
+				  i++;
+			  }
+			  continue;
+		  }
+		  i++;
+	}
+        count++;
+	cmds = malloc(count * sizeof(char *));
         if (cmds == NULL)
         {
-                free(buff);
-                printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
                 exit(EXIT_FAILURE);
         }
-        i = 0;
-        while (buff[i] != '\0')
+	i = 0;
+	while (buff[i] != '\0')
         {
 		if (buff[i] != ' ' && buff[i] != '\t')
 		{
+			j = 0;
 			while (buff[i] != ' ' && buff[i] != '\t' && buff[i] != '\0')
 			{
 				token[j] = buff[i];
@@ -42,7 +56,7 @@ char **parse(char *buff)
 			token[j] = '\0';
 			cmds[z] = _strdup(token);
 			z++;
-			j = 0;
+			continue;
 		}
 		i++;
 
@@ -69,11 +83,16 @@ void execute(char **new, char *cmd, int line_number)
 		{"mul", _mul},
 		{ NULL, NULL}
 	};
-	cmds = parse(cmd);	
+	cmds = parse(cmd);
+
 	if (cmds[1])
+	{
 		data = atoi(cmds[1]);
+	}
+
 	if (strcmp(cmds[0], "nop") == 0)
 		return;
+
 	if (cmds[0][0] == '#')
 		return;
 	if (strcmp(cmds[0], "push") == 0)
