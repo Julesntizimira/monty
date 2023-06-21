@@ -127,7 +127,7 @@ void execute(char **new, char *cmd, int line_number)
 	}
 	else if (_strcmp(cmds[0], "pop") == 0 && head == NULL)
         {
-                fprintf(stderr,"L%d: can't pop, stack empty\n", line_number);
+                fprintf(stderr,"L%d: can't pop an empty stack\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
