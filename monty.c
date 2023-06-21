@@ -133,7 +133,14 @@ void execute(char **new, char *cmd, int line_number)
 		{"pop", _pop}, {"swap", _swap}, {"add", _add}, {"sub", _sub},
 		{"div", _div}, {"mod", _mod}, {"mul", _mul}, { NULL, NULL}};
 	cmds = parse(cmd);
-	if (cmds == NULL || _strcmp(cmds[0], "nop") == 0 || cmds[0][0] == '#')
+	if (cmds == NULL)
+		return;
+	if (_strcmp(cmds[0], "nop") == 0)
+	{
+		_free(cmds);
+		return;
+	}
+	if (cmds[0][0] == '#')
 	{
 		_free(cmds);
 		return;
