@@ -167,6 +167,13 @@ void execute(char **new, char *cmd, int line_number)
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
+	else if (_strcmp(cmds[0], "mul") == 0 && (head == NULL || head->next == NULL))
+        {
+                fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+                _free(new);
+                _free(cmds);
+                exit(EXIT_FAILURE);
+        }
 	while (instr[i].opcode != NULL)
 	{
 		if (_strcmp(instr[i].opcode, cmds[0]) == 0)
