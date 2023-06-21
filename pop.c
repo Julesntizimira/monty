@@ -4,6 +4,7 @@ void _pop(stack_t **h, int n)
 {
 	stack_t *tmp = *h;
 
+	(void)n;
 
 	if (tmp->next != NULL)
 	{

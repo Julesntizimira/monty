@@ -19,7 +19,7 @@ char **parse(char *buff)
 {
 
         char **cmds = NULL, token[1024];
-        int i = 0, j = 0, z = 0, count = 0;
+        int i = 0, j = 0, z = 0;
 
         cmds = malloc(3 * sizeof(char *));
         if (cmds == NULL)
@@ -148,7 +148,7 @@ void execute(char **new, char *cmd, int line_number)
 }
 int main(int argc, char *argv[])
 {
-	char *path = NULL, *buff = NULL;
+	char *path = NULL;
 	char **new = NULL;
 	int line_number = 1, i = 0;
 	head = NULL;
@@ -175,5 +175,7 @@ int main(int argc, char *argv[])
 	}
 	_free(new);
 	freelist(&head);
+
+	return (0);
 
 }

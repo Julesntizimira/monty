@@ -77,7 +77,7 @@ char **tokenise(char *buff, char delim)
 }
 char **getinput(char *str)
 {
-	char *buff = NULL, **cmds = NULL, token[1024];
+	char *buff = NULL, **cmds = NULL;
 	int fp;
 	
 	fp = open(str, O_RDONLY);
