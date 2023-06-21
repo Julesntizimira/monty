@@ -52,4 +52,6 @@ void _sub(stack_t **h, int data);
 void _div(stack_t **h, int data);
 void _mul(stack_t **h, int data);
 void _mod(stack_t **h, int data);
+int countbuff(char *buff);
+void _free(char **cmds);
 #endif
