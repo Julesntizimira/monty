@@ -163,7 +163,7 @@ void execute(char **new, char *cmd, int line_number)
 		}
 		i++;
 	}
-	/*_free(cmds);*/
+	_free(cmds);
 }
 int main(int argc, char *argv[])
 {
