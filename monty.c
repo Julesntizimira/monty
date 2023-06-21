@@ -66,8 +66,7 @@ void handle_errors(char **new, char **cmds, int line_number, int error_number)
 		"can't mul, stack too short",
 		"unknown instruction"
 	};
-
-	if (line_number == 10)
+	if (error_number == 10)
 	{
 		fprintf(stderr, "L%d: %s %s\n", line_number,
 				str[error_number], cmds[0]);
@@ -77,6 +76,7 @@ void handle_errors(char **new, char **cmds, int line_number, int error_number)
 		fprintf(stderr, "L%d: %s\n", line_number,
 				str[error_number]);
 	}
+
 	_free(new);
 	_free(cmds);
 	freelist(&head);
