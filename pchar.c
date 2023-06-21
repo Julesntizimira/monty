@@ -1,6 +1,6 @@
 # include "monty.h"
 /**
- * pchar - print char at the top of stack
+ * _pchar - print char at the top of stack
  * @h: input headnode
  * @data: input
  */

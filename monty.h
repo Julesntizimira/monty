@@ -54,5 +54,6 @@ void _mul(stack_t **h, int data);
 void _mod(stack_t **h, int data);
 int countbuff(char *buff);
 void _free(char **cmds);
+void _pstr(stack_t **h, int data);
 void _pchar(stack_t **h, int data);
 #endif
