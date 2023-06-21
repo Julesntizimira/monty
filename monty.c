@@ -166,9 +166,18 @@ void execute(char **new, char *cmd, int line_number)
 		if (_strcmp(instr[i].opcode, cmds[0]) == 0)
 		{
 			instr[i].f(&head, data);
+			break;
 		}
 		i++;
 	}
+	if (instr[i].opcode == NULL)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, cmds[0]);
+		_free(new);
+		_free(cmds);
+		exit(EXIT_FAILURE);
+	}
+
 	_free(cmds);
 }
 int main(int argc, char *argv[])
@@ -178,7 +187,7 @@ int main(int argc, char *argv[])
 	int line_number = 1, i = 0;
 	head = NULL;
 
-	if (argc != 2 || access(path, F_OK) != 0)
+	if (argc != 2)
 	{
 		fprintf(stderr,"USAGE: monty file\n");
 		exit(EXIT_FAILURE);
