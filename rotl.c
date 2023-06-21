@@ -10,7 +10,7 @@ void _rotl(stack_t **h, int data)
 
 	(void)data;
 
-	if (head != NULL)
+	if (head != NULL && head->next != NULL)
 	{
 		*h = (*h)->next;
 		(*h)->prev = NULL;
