@@ -79,8 +79,7 @@ void handle_errors(char **new, char **cmds, int line_number, int error_number)
 	}
 	_free(new);
 	_free(cmds);
-	if (error_number == 0)
-		freelist(&head);
+	freelist(&head);
 	exit(EXIT_FAILURE);
 }
 /**
