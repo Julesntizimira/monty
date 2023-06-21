@@ -184,6 +184,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
+		fflush(stderr);
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
@@ -191,6 +192,7 @@ int main(int argc, char *argv[])
 
 	if (access(path, R_OK) != 0)
 	{
+		fflush(stderr);
 		fprintf(stderr, "Error: Can't open file %s\n", path);
 		exit(EXIT_FAILURE);
 	}
