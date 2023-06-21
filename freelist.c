@@ -1,5 +1,8 @@
 # include "monty.h"
-
+/**
+ * freelist - free the list
+ * @h: input head node
+ */
 void freelist(stack_t **h)
 {
 	if (*h != NULL)
@@ -11,5 +14,5 @@ void freelist(stack_t **h)
 		}
 		free(*h);
 		*h = NULL;
-	}	
+	}
 }
