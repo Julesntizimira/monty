@@ -56,4 +56,5 @@ int countbuff(char *buff);
 void _free(char **cmds);
 void _pstr(stack_t **h, int data);
 void _pchar(stack_t **h, int data);
+void _rotl(stack_t **h, int data);
 #endif
