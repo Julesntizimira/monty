@@ -80,7 +80,7 @@ void execute(char **new, char *cmd, int line_number)
 	{
 		if (cmds[1][0] != '0' && data == 0)
 		{
-			printf("L%d: usage: push integer\n", line_number);
+			fprintf(stderr,"L%d: usage: push integer\n", line_number);
 			_free(new);
 			_free(cmds);
 			freelist(&head);
@@ -89,49 +89,49 @@ void execute(char **new, char *cmd, int line_number)
 	}
 	else if (strcmp(cmds[0], "pint") == 0 && head == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr,"L%d: can't pint, stack empty\n", line_number);
 		_free(new);
 		_free(cmds);
 		exit(EXIT_FAILURE);
 	}
 	else if (strcmp(cmds[0], "pop") == 0 && head == NULL)
         {
-                printf("L%d: can't pop, stack empty\n", line_number);
+                fprintf(stderr,"L%d: can't pop, stack empty\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
 	else if (strcmp(cmds[0], "swap") == 0 && (head == NULL || head->next == NULL))
         {
-                printf("L%d: can't swap, stack too short\n", line_number);
+                fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
 	else if (strcmp(cmds[0], "add") == 0 && (head == NULL || head->next == NULL))
         {
-                printf("L%d: can't add, stack too short\n", line_number);
+                fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
 	else if (strcmp(cmds[0], "sub") == 0 && (head == NULL || head->next == NULL))
         {
-                printf("L%d: can't sub, stack too short\n", line_number);
+                fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
 	else if (strcmp(cmds[0], "div") == 0 && (head == NULL || head->next == NULL))
         {
-                printf("L%d: can't div, stack too short\n", line_number);
+                fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
 	else if (head->n == 0)
         {
-                printf("L%d: division by zero\n", line_number);
+		fprintf(stderr, "L%d: division by zero\n", line_number);
                 _free(new);
                 _free(cmds);
                 exit(EXIT_FAILURE);
@@ -155,14 +155,14 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr,"USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	path = argv[1];
 
 	if (access(path, R_OK) != 0)
 	{
-		printf("Error: Can't open file %s\n", path);
+		fprintf(stderr,"Error: Can't open file %s\n", path);
 		exit(EXIT_FAILURE);
 	}
 	new = getinput(path);
@@ -177,5 +177,4 @@ int main(int argc, char *argv[])
 	freelist(&head);
 
 	return (0);
-
 }
