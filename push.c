@@ -14,8 +14,9 @@ void _push(stack_t **h, int data)
 		printf("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+	newnode->prev = NULL;
 	newnode->n = data;
-
+	newnode->next = NULL;
 	if (*h == NULL)
 	{
 		*h = newnode;
