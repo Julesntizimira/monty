@@ -148,7 +148,7 @@ void execute(char **new, char *cmd, int line_number)
                 _free(cmds);
                 exit(EXIT_FAILURE);
         }
-	else if (head->n == 0)
+	else if (strcmp(cmds[0], "div") == 0 && head->n == 0)
         {
 		fprintf(stderr, "L%d: division by zero\n", line_number);
                 _free(new);

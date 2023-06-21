@@ -10,12 +10,12 @@ void _pall(stack_t **h, int data)
 
         (void)data;
 
-        if (h == NULL || *h == NULL)
-                return;
-
-        while (tmp != NULL)
-        {
-                printf("%d\n", tmp->n);
-                tmp = tmp->next;
+        if (head != NULL)
+	{
+		while (tmp != NULL)
+		{
+			printf("%d\n", tmp->n);
+			tmp = tmp->next;
+		}
         }
 }
