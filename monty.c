@@ -138,7 +138,7 @@ void execute(char **new, char *cmd, int line_number)
 	instruction_t instr[] = {{"push", _push}, {"pall", _pall}, {"pint", _pint},
 		{"pop", _pop}, {"swap", _swap}, {"add", _add}, {"sub", _sub},
 		{"div", _div}, {"mod", _mod}, {"mul", _mul}, {"pchar", _pchar},
-		{"pstr", _pstr}, {"rotl", _rotl}, { NULL, NULL}};
+		{"pstr", _pstr}, {"rotr", _rotr}, {"rotl", _rotl}, { NULL, NULL}};
 	cmds = parse(cmd);
 	if (cmds == NULL)
 		return;
