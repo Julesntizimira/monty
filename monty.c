@@ -64,7 +64,9 @@ void handle_errors(char **new, char **cmds, int line_number, int error_number)
 		"division by zero",
 		"can't mod, stack too short",
 		"can't mul, stack too short",
-		"unknown instruction"
+		"unknown instruction",
+		"can't pchar, stack empty",
+		"can't pchar, value out of range"
 	};
 	if (error_number == 10)
 	{
@@ -117,6 +119,10 @@ void error_check(char **new, char **cmds, int line_number, int data)
 		handle_errors(new, cmds, line_number, 7);
 	else if (_strcmp(cmds[0], "mul") == 0 && (head == NULL || head->next == NULL))
 		handle_errors(new, cmds, line_number, 9);
+	else if (_strcmp(cmds[0], "pchar") == 0 && (head == NULL))
+		handle_errors(new, cmds, line_number, 11);
+	else if (_strcmp(cmds[0], "pchar") == 0 && (head->n < 0 || head->n > 127))
+		handle_errors(new, cmds, line_number, 12);
 }
 /**
  * execute - parse input
@@ -131,7 +137,8 @@ void execute(char **new, char *cmd, int line_number)
 
 	instruction_t instr[] = {{"push", _push}, {"pall", _pall}, {"pint", _pint},
 		{"pop", _pop}, {"swap", _swap}, {"add", _add}, {"sub", _sub},
-		{"div", _div}, {"mod", _mod}, {"mul", _mul}, { NULL, NULL}};
+		{"div", _div}, {"mod", _mod}, {"mul", _mul}, {"pchar", _pchar},
+		{ NULL, NULL}};
 	cmds = parse(cmd);
 	if (cmds == NULL)
 		return;
