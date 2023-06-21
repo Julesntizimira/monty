@@ -97,7 +97,7 @@ void execute(char **new, char *cmd, int line_number)
 		return;
 	if (strcmp(cmds[0], "push") == 0)
 	{
-		if (cmds[1][0] != '0' && data == 0)
+		if ((!cmds[1]) || (cmds[1][0] != '0' && data == 0))
 		{
 			fprintf(stderr,"L%d: usage: push integer\n", line_number);
 			_free(new);
