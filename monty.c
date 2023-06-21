@@ -91,10 +91,16 @@ void execute(char **new, char *cmd, int line_number)
 	}
 
 	if (strcmp(cmds[0], "nop") == 0)
+	{
+		_free(cmds);
 		return;
+	}
 
 	if (cmds[0][0] == '#')
+	{
+		_free(cmds);
 		return;
+	}
 	if (strcmp(cmds[0], "push") == 0)
 	{
 		if ((!cmds[1]) || (cmds[1][0] != '0' && data == 0))
