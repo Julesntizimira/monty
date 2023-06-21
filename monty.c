@@ -61,6 +61,11 @@ char **parse(char *buff)
 		i++;
 
         }
+	if (z == 0)
+	{
+		free(cmds);
+		return (NULL);
+	}
 	cmds[z] = NULL;
         return (cmds);
 }
@@ -84,7 +89,8 @@ void execute(char **new, char *cmd, int line_number)
 		{ NULL, NULL}
 	};
 	cmds = parse(cmd);
-
+	if (cmds == NULL)
+		return;
 	if (cmds[1])
 	{
 		data = atoi(cmds[1]);
