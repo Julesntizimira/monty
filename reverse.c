@@ -8,6 +8,8 @@ void _rotr(stack_t **h, int data)
 {
 	stack_t *tmp = *h;
 
+	if (*h == NULL || h == NULL)
+		return;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	while (tmp != *h)
