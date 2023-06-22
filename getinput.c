@@ -132,6 +132,7 @@ char **getinput(char *str)
 	buff = malloc(10001 * sizeof(char));
 	if (buff == NULL)
 	{
+		close(fp);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
