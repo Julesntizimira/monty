@@ -6,21 +6,10 @@
  */
 void _rotr(stack_t **h, int data)
 {
-	stack_t *tmp = *h, *pr = NULL;
+	stack_t *tmp = *h;
 
-	(void)data;
-
-	if (head != NULL && head->next != NULL)
-	{
-		while ((*h)->next != NULL)
-		{
-			*h = (*h)->next;
-			tmp->next = pr;
-			tmp->prev = *h;
-			pr = tmp;
-			tmp = *h;
-		}
-		(*h)->next = pr;
-		(*h)->prev = NULL;
-	}
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	while (tmp != *h)
+		_rotl(&*h, data);
 }
