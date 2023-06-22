@@ -125,50 +125,6 @@ void error_check(char **new, char **cmds, int line_number, int data)
 		handle_errors(new, cmds, line_number, 12);
 }
 /**
- * execute - parse input
- * @new: input
- * @cmd: input
- * @line_number: input
- */
-void execute(char **new, char *cmd, int line_number)
-{
-	char **cmds = NULL;
-	int data = 0, i = 0;
-
-	instruction_t instr[] = {{"push", _push}, {"pall", _pall}, {"pint", _pint},
-		{"pop", _pop}, {"swap", _swap}, {"add", _add}, {"sub", _sub},
-		{"div", _div}, {"mod", _mod}, {"mul", _mul}, {"pchar", _pchar},
-		{"pstr", _pstr}, {"rotr", _rotr}, {"rotl", _rotl}, { NULL, NULL}};
-	cmds = parse(cmd);
-	if (cmds == NULL)
-		return;
-	if (_strcmp(cmds[0], "nop") == 0)
-	{
-		_free(cmds);
-		return;
-	}
-	if (cmds[0][0] == '#')
-	{
-		_free(cmds);
-		return;
-	}
-	if (cmds[1])
-		data = atoi(cmds[1]);
-	error_check(new, cmds, line_number, data);
-	while (instr[i].opcode != NULL)
-	{
-		if (_strcmp(instr[i].opcode, cmds[0]) == 0)
-		{
-			instr[i].f(&head, data);
-			break;
-		}
-		i++;
-	}
-	if (instr[i].opcode == NULL)
-		handle_errors(new, cmds, line_number, 10);
-	_free(cmds);
-}
-/**
  * main - main function
  * @argc: number of argument
  * @argv: arguments array
@@ -178,7 +134,7 @@ int main(int argc, char *argv[])
 {
 	char *path = NULL;
 	char **new = NULL;
-	int line_number = 1, i = 0;
+	int line_number = 1, j = 0, i = 0;
 
 	head = NULL;
 
@@ -197,12 +153,20 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	new = getinput(path);
-
 	while (new[i] != NULL)
 	{
-		execute(new, new[i], line_number);
-		line_number++;
-		i++;
+		while (j == 0 && new[i] != NULL)
+		{
+			j = execute1(new, new[i], line_number);
+			line_number++;
+			i++;
+		}
+		while (j == 1 && new[i] != NULL)
+		{
+			j = execute2(new, new[i], line_number);
+			line_number++;
+			i++;
+		}
 	}
 	_free(new);
 	freelist(&head);

@@ -36,6 +36,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, int line_number);
 } instruction_t;
 extern stack_t *head;
+char **parse(char *buff);
+void handle_errors(char **new, char **cmds, int line_number, int error_number);
+void error_check(char **new, char **cmds, int line_number, int data);
+int execute1(char **new, char *cmd, int line_number);
+int execute2(char **new, char *cmd, int line_number);
+void _push_(stack_t **h, int data);
 void _push(stack_t **head, int data);
 void _pall(stack_t **h, int data);
 char **getinput(char *str);
