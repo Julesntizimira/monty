@@ -132,6 +132,7 @@ char **getinput(char *str)
 	}
 	i = read(fp, buff, 10000);
 	buff[i] = '\0';
+	close(fp);
 	cmds = tokenise(buff, '\n');
 	return (cmds);
 }
