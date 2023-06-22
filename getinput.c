@@ -124,6 +124,11 @@ char **getinput(char *str)
 	int fp, i;
 
 	fp = open(str, O_RDONLY);
+	if (fp == -1)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", str);
+		exit(EXIT_FAILURE);
+	}
 	buff = malloc(10001 * sizeof(char));
 	if (buff == NULL)
 	{

@@ -146,12 +146,12 @@ int main(int argc, char *argv[])
 	}
 	path = argv[1];
 
-	if (access(path, R_OK) != 0)
+/*	if (access(path, R_OK) != 0)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", path);
 		fflush(NULL);
 		exit(EXIT_FAILURE);
-	}
+	}*/
 	new = getinput(path);
 	while (new[i] != NULL)
 	{
