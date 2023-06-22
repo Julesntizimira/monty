@@ -15,7 +15,7 @@ void _pall(stack_t **h, int data)
 	{
 		while (tmp != NULL)
 		{
-			printf("%d\n", tmp->n);
+			fprintf(stdout, "%d\n", tmp->n);
 			tmp = tmp->next;
 		}
 	}
