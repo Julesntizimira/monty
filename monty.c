@@ -135,6 +135,7 @@ int main(int argc, char *argv[])
 	char *path = NULL;
 	char **new = NULL;
 	int line_number = 1, j = 0, i = 0;
+	int *line_number_ptr = &line_number;
 
 	head = NULL;
 
@@ -145,7 +146,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	path = argv[1];
-	new = getinput(path);
+	new = getinput(path, line_number_ptr);
 	while (new[i] != NULL)
 	{
 		while (j == 0 && new[i] != NULL)

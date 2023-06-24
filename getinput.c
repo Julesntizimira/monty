@@ -68,18 +68,19 @@ char *_strdup(char *str)
  * tokenise - tokenise string
  * @buff: input string
  * @delim: delimiter
+ * @line_number: line number
  * Return: pointer to an array of strings
  */
-char **tokenise(char *buff, char delim)
+char **tokenise(char *buff, char delim, int *line_number)
 {
 	char **cmds = NULL, token[1024] = {'\0'};
-	int i = 0, j = 0, z = 0, count = 0;
+	int i = 0, j = 0, k = 0, z = 0, count = 0;
 
-	while (buff[i] != '\0')
+	while (buff[k] != '\0')
 	{
-		if (buff[i] == delim)
+		if (buff[k] == delim)
 			count++;
-		i++;
+		k++;
 	}
 	count++;
 	cmds = malloc(count * sizeof(char *));
@@ -89,12 +90,12 @@ char **tokenise(char *buff, char delim)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
 	while (buff[i] != '\0')
 	{
 		if (buff[i] == delim)
 		{
 			i++;
+			(*line_number)++;
 			continue;
 		}
 		while (buff[i] != delim)
@@ -116,9 +117,10 @@ char **tokenise(char *buff, char delim)
 /**
  * getinput - geting input from given file
  * @str: input file path
+ * @line_number: line number
  * Return: pointer to an array of strings
  */
-char **getinput(char *str)
+char **getinput(char *str, int *line_number)
 {
 	char *buff = NULL, **cmds = NULL;
 	int fp, i;
@@ -139,6 +141,6 @@ char **getinput(char *str)
 	i = read(fp, buff, 10000);
 	buff[i] = '\0';
 	close(fp);
-	cmds = tokenise(buff, '\n');
+	cmds = tokenise(buff, '\n', line_number);
 	return (cmds);
 }
