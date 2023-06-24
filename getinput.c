@@ -131,14 +131,14 @@ char **getinput(char *str, int *line_number)
 		fprintf(stderr, "Error: Can't open file %s\n", str);
 		exit(EXIT_FAILURE);
 	}
-	buff = malloc(10001 * sizeof(char));
+	buff = malloc(100001 * sizeof(char));
 	if (buff == NULL)
 	{
 		close(fp);
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	i = read(fp, buff, 10000);
+	i = read(fp, buff, 100000);
 	buff[i] = '\0';
 	close(fp);
 	cmds = tokenise(buff, '\n', line_number);
