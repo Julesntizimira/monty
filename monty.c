@@ -9,9 +9,8 @@ stack_t *head;
 char **parse(char *buff)
 {
 	char **cmds = NULL, token[1024] = {'\0'};
-	int i = 0, j = 0, z = 0, count = 0;
+	int i = 0, j = 0, z = 0, count = countbuff(buff);
 
-	count =  countbuff(buff);
 	cmds = malloc((count + 1) * sizeof(char *));
 	if (cmds == NULL)
 	{
@@ -30,7 +29,10 @@ char **parse(char *buff)
 				i++;
 			}
 			token[j] = '\0';
-			cmds[z] = _strdup(token);
+			if ((z == 1) && (_strcmp(token, "-0") == 0))
+				cmds[z] = _strdup("0");
+			else
+				cmds[z] = _strdup(token);
 			z++;
 			continue;
 		}
@@ -85,6 +87,33 @@ void handle_errors(char **new, char **cmds, int line_number, int error_number)
 	exit(EXIT_FAILURE);
 }
 /**
+ * checkdata - check data if there is no error
+ * @cmds: input
+ * @data: input
+ * Return: 0 or 1
+ */
+int checkdata(char **cmds, int data)
+{
+	int i = _strlen(cmds[1]);
+	int count = 0;
+
+	if (data < 0)
+	{
+		data *= -1;
+		count++;
+	}
+	do {
+		data /= 10;
+		count++;
+	} while (data > 0);
+
+	if (count != i)
+	{
+		return (1);
+	}
+	return (0);
+}
+/**
  * error_check - parse input
  * @new: input
  * @cmds: input
@@ -95,7 +124,8 @@ void error_check(char **new, char **cmds, int line_number, int data)
 {
 	if (_strcmp(cmds[0], "push") == 0)
 	{
-		if ((!cmds[1]) || (cmds[1][0] != '0' && data == 0))
+		if (((!cmds[1]) || (cmds[1][0] != '0' && data == 0)) ||
+				(checkdata(cmds, data) != 0))
 			handle_errors(new, cmds, line_number, 0);
 	}
 	else if (_strcmp(cmds[0], "pint") == 0 && head == NULL)
